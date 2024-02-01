@@ -1,0 +1,48 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+        welcome to Retro street wear where you can find your outfits
+{% endblock %}
+{% block title %}
+Search
+{% endblock %}
+{% block content %}
+<div>
+    <p class="text-center my_search_text">you have searched for : <b>"{{query}}"</b></p>
+
+<div class="container">
+    <div class="row mx_auto">
+        {% for product in products %}
+        <div class="my_bottom_margin col-12 col-sm-12 col-md-12 col-md-4 col-lg-4">
+            <div class="card text-center" style="min-width-:18rem;">
+                <a href="{{product.get_url}}"  ><img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}" width="500px" height="500px"></a>
+                <div class="card-body">
+                    <div class="row">
+                    <h4>{{product.name}}</h4>
+                    <h6>${{product.price}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+        <div class="row mx-auto">
+        <p class="text-center my_search_text"><b>0 results found</b></p>
+        </div>
+        {% endfor %}
+    </div>
+
+
+<!--    <div class="mx-auto">-->
+<!--        {% if products.paginator.num_pages > 1 %}-->
+<!--        <hr>-->
+<!--        <div class="text-center">-->
+<!--            {% for pg in products.paginator.page_range %}-->
+<!--            <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+    <br>
+</div>
+{% endblock %}
